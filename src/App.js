@@ -12,6 +12,17 @@ export default class App extends Component {
     todoCards: []
   }
 
+  componentDidUpdate() {
+    if (localStorage.getItem('todo-cards') !== undefined) {
+      localStorage.setItem('todo-cards', JSON.stringify(this.state))
+    }
+  }
+
+  addCard = () => {
+    console.log('add card clicked')
+    this.setState(pState => ({ todoCards: [...pState.todoCards, { id: uuid() }] }))
+  }
+
   componentDidMount() {
     if (localStorage.getItem('todo-cards') !== null) {
       this.setState(JSON.parse(localStorage.getItem('todo-cards')))
@@ -24,17 +35,17 @@ export default class App extends Component {
   }
 
   render() {
-    const { todoCards } = this.state
+    const { state: {todoCards}, addCard } = this // prettier-ignore
     return (
       <div className="App container">
         <div className="columns is-centered">
           <div className="column is-half">
             {todoCards.map(card => (
-              <ToDoCard id={card.id} />
+              <ToDoCard id={card.id} key={card.id} />
             ))}
           </div>
         </div>
-        <AddCardButton />
+        <AddCardButton addCard={addCard} />
       </div>
     )
   }

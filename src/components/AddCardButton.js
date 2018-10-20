@@ -1,11 +1,21 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export default function AddCardButton() {
+const AddCardButton = ({ addCard }) => {
   return (
-    <button className="button is-primary is-rounded add-card-button">
-      <span class="icon">
-        <i class="fas fa-plus" />
+    <button
+      className="button is-primary is-rounded is-outlined add-card-button tooltip"
+      data-tooltip="Add to do card"
+      onClick={addCard}>
+      <span className="icon">
+        <i className="fas fa-plus" />
       </span>
     </button>
   )
 }
+
+AddCardButton.propTypes = {
+  addCard: PropTypes.func.isRequired
+}
+
+export default AddCardButton
