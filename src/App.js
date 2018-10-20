@@ -1,24 +1,38 @@
-import React from 'react'
-import ToDos from './components/ToDos'
+import React, { Component } from 'react'
+import ToDoCard from './components/ToDoCard'
+import uuid from 'uuid'
 import 'bulma/css/bulma.css'
 import 'animate.css/animate.css'
 import './styles.css'
 
-export default function App() {
-  return (
-    <div className="App container">
-      <div className="columns is-centered">
-        <div className="column is-half">
-          <div className="card todo-card" style={{ marginTop: '3rem' }}>
-            <header className="card-header">
-              <p className="card-header-title">To do's are saved in local storage</p>
-            </header>
-            <div className="card-content">
-              <ToDos />
-            </div>
+export default class App extends Component {
+  state = {
+    todoCards: []
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('todo-cards') !== null) {
+      this.setState(JSON.parse(localStorage.getItem('todo-cards')))
+    } else {
+      const id = uuid()
+      const defaultState = { todoCards: [{ id }] }
+      localStorage.setItem('todo-cards', JSON.stringify(defaultState))
+      this.setState(defaultState)
+    }
+  }
+
+  render() {
+    const { todoCards } = this.state
+    return (
+      <div className="App container">
+        <div className="columns is-centered">
+          <div className="column is-half">
+            {todoCards.map(card => (
+              <ToDoCard id={card.id} />
+            ))}
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }

@@ -2,31 +2,28 @@ import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import ToDo from './ToDo'
 import AddNewTodo from './AddNewTodo'
-import {
-  toggleCheck,
-  newTodo,
-  deleteTodo,
-  updateWithEdit,
-  defaultTodoList
-} from './stateActions'
+import { toggleCheck, newTodo, deleteTodo, updateWithEdit, defaultTodoList } from './stateActions'
 
 export default class ToDos extends Component {
   state = {
+    title: '',
+    id: '',
     todos: []
   }
 
   componentDidUpdate() {
-    if (localStorage.getItem('todos') !== undefined) {
-      localStorage.setItem('todos', JSON.stringify(this.state))
+    const { id } = this.props
+    if (localStorage.getItem(id) !== undefined) {
+      localStorage.setItem(id, JSON.stringify(this.state))
     }
   }
 
   componentDidMount() {
-    let storedTodos = localStorage.getItem('todos')
-    if (storedTodos === null) {
-      localStorage.setItem('todos', JSON.stringify(defaultTodoList()))
+    const { id } = this.props
+    if (localStorage.getItem(id) === null) {
+      localStorage.setItem(id, JSON.stringify(defaultTodoList(id)))
     }
-    this.setState(JSON.parse(storedTodos))
+    this.setState(JSON.parse(localStorage.getItem(id)))
   }
 
   addTodo = () => this.setState(newTodo())
@@ -47,17 +44,11 @@ export default class ToDos extends Component {
           transitionLeaveTimeout={200}>
           {todos.length > 0 ? (
             todos.map(todo => (
-              <ToDo
-                todo={todo}
-                check={checkToggle}
-                del={deleteIt}
-                edit={edit}
-                key={todo.id}
-              />
+              <ToDo todo={todo} check={checkToggle} del={deleteIt} edit={edit} key={todo.id} />
             ))
           ) : (
-            <article class="message">
-              <div class="message-body">You have no to do's</div>
+            <article className="message">
+              <div className="message-body">You have no to do's</div>
             </article>
           )}
         </ReactCSSTransitionGroup>

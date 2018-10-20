@@ -3,9 +3,9 @@ import React from 'react'
 const AddNewTodo = ({ add }) => (
   <div className="columns is-mobile">
     <div className="column">
-      <a className="button is-fullwidth" onClick={add}>
+      <button className="button is-fullwidth" onClick={add}>
         Add new to do
-      </a>
+      </button>
     </div>
   </div>
 )

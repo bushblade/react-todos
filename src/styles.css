@@ -22,3 +22,10 @@
 .todo-card {
   box-shadow: -1px 3px 16px 2px rgba(0, 0, 0, 0.1);
 }
+
+.add-card-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1;
+}
