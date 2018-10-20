@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import ToDoCard from './components/ToDoCard'
+import AddCardButton from './components/AddCardButton'
 import uuid from 'uuid'
 import 'bulma/css/bulma.css'
+import 'bulma-extensions/bulma-tooltip/dist/css/bulma-tooltip.min.css'
 import 'animate.css/animate.css'
 import './styles.css'
 
@@ -32,6 +34,7 @@ export default class App extends Component {
             ))}
           </div>
         </div>
+        <AddCardButton />
       </div>
     )
   }
