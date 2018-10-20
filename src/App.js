@@ -19,8 +19,14 @@ export default class App extends Component {
   }
 
   addCard = () => {
-    console.log('add card clicked')
     this.setState(pState => ({ todoCards: [...pState.todoCards, { id: uuid() }] }))
+  }
+
+  deleteCard = id => {
+    localStorage.removeItem(id)
+    this.setState(pState => ({
+      todoCards: pState.todoCards.filter(card => card.id !== id)
+    }))
   }
 
   componentDidMount() {
@@ -35,15 +41,13 @@ export default class App extends Component {
   }
 
   render() {
-    const { state: {todoCards}, addCard } = this // prettier-ignore
+    const { state: {todoCards}, addCard, deleteCard } = this // prettier-ignore
     return (
       <div className="App container">
-        <div className="columns is-centered">
-          <div className="column is-half">
-            {todoCards.map(card => (
-              <ToDoCard id={card.id} key={card.id} />
-            ))}
-          </div>
+        <div className="columns is-multiline">
+          {todoCards.map(card => (
+            <ToDoCard id={card.id} key={card.id} deleteCard={deleteCard} />
+          ))}
         </div>
         <AddCardButton addCard={addCard} />
       </div>

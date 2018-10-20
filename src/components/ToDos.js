@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import ToDo from './ToDo'
 import AddNewTodo from './AddNewTodo'
-import { toggleCheck, newTodo, deleteTodo, updateWithEdit, defaultTodoList } from './stateActions'
+import {
+  toggleCheck,
+  newTodo,
+  deleteTodo,
+  updateWithEdit,
+  defaultTodoList
+} from './ToDosStateActions'
 
 export default class ToDos extends Component {
   state = {
