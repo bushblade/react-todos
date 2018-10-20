@@ -1,0 +1,24 @@
+.checked {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.todos-enter {
+  animation: 0.3s fadeIn ease;
+}
+
+.todos-leave {
+  animation: 0.2s fadeOut ease;
+}
+
+:focus {
+  outline: none;
+}
+
+.selected-todo {
+  box-shadow: 0 2px 1px -2px gray;
+}
+
+.todo-card {
+  box-shadow: -1px 3px 16px 2px rgba(0, 0, 0, 0.1);
+}

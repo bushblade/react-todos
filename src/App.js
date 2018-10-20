@@ -1,28 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import ToDos from './components/ToDos'
+import 'bulma/css/bulma.css'
+import 'animate.css/animate.css'
+import './styles.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+export default function App() {
+  return (
+    <div className="App container">
+      <div className="columns is-centered">
+        <div className="column is-half">
+          <div className="card todo-card" style={{ marginTop: '3rem' }}>
+            <header className="card-header">
+              <p className="card-header-title">To do's are saved in local storage</p>
+            </header>
+            <div className="card-content">
+              <ToDos />
+            </div>
+          </div>
+        </div>
       </div>
-    );
-  }
+    </div>
+  )
 }
-
-export default App;
