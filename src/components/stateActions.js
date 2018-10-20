@@ -1,3 +1,5 @@
+import uuid from 'uuid'
+
 const toggleCheck = id => prevState => ({
   todos: prevState.todos.map(t => {
     let todo = { ...t }
@@ -9,7 +11,7 @@ const toggleCheck = id => prevState => ({
 const newTodo = () => prevState => {
   let created = {
     text: '',
-    id: Math.random(),
+    id: uuid(),
     checked: false
   }
   return {
@@ -33,12 +35,12 @@ const defaultTodoList = () => ({
   todos: [
     {
       text: 'Delete me ...',
-      id: Math.random(),
+      id: uuid(),
       checked: false
     },
     {
       text: 'This is a checked example',
-      id: Math.random(),
+      id: uuid(),
       checked: true
     }
   ]
