@@ -14,7 +14,7 @@ const delCard = id => ({ todoCards }) => {
 }
 
 const newCard = () => ({ todoCards }) => {
-  return { todoCards: [...todoCards, { id: uuid(), title: 'test title...' }] }
+  return { todoCards: [...todoCards, { id: uuid(), title: '' }] }
 }
 
 export { updateTitle, delCard, newCard }

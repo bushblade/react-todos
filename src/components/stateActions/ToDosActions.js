@@ -32,18 +32,12 @@ const updateWithEdit = (id, val) => prevState => ({
 })
 
 const defaultTodoList = id => ({
-  title: '',
   id,
   todos: [
     {
-      text: 'Delete me ...',
+      text: ' ',
       id: uuid(),
       checked: false
-    },
-    {
-      text: 'This is a checked example',
-      id: uuid(),
-      checked: true
     }
   ]
 })
