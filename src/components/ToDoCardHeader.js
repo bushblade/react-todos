@@ -1,21 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const ToDoCardHeader = ({ id, deleteCard }) => {
-  return (
-    <header className="card-header">
-      <p className="card-header-title">To do's are saved in local storage</p>
-      <span className="card-header-icon" onClick={() => deleteCard(id)}>
-        <span className="icon has-text-dark">
-          <i className="fas fa-trash" />
+class ToDoCardHeader extends Component {
+  render() {
+    const { id, deleteCard, updateTitle, title } = this.props
+    return (
+      <header className="card-header">
+        <p
+          className="card-header-title"
+          contentEditable
+          suppressContentEditableWarning
+          onBlur={({ target: { textContent } }) => updateTitle(id, textContent)}>
+          {title}
+        </p>
+        <span className="card-header-icon" onClick={() => deleteCard(id)}>
+          <span className="icon has-text-dark">
+            <i className="fas fa-trash" />
+          </span>
         </span>
-      </span>
-    </header>
-  )
+      </header>
+    )
+  }
 }
 
 ToDoCardHeader.propTypes = {
-  deleteCard: PropTypes.func.isRequired
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  deleteCard: PropTypes.func.isRequired,
+  updateTitle: PropTypes.func.isRequired
 }
 
 export default ToDoCardHeader

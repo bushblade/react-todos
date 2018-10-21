@@ -6,11 +6,18 @@ import 'bulma/css/bulma.css'
 import 'bulma-extensions/bulma-tooltip/dist/css/bulma-tooltip.min.css'
 import 'animate.css/animate.css'
 import './styles.css'
+import { updateTitle, delCard, newCard } from './components/stateActions/AppActions'
 
 export default class App extends Component {
   state = {
     todoCards: []
   }
+
+  addCard = () => this.setState(newCard())
+
+  updateCardTitle = (id, title) => this.setState(updateTitle(id, title))
+
+  deleteCard = id => this.setState(delCard(id))
 
   componentDidUpdate() {
     if (localStorage.getItem('todo-cards') !== undefined) {
@@ -18,35 +25,27 @@ export default class App extends Component {
     }
   }
 
-  addCard = () => {
-    this.setState(pState => ({ todoCards: [...pState.todoCards, { id: uuid() }] }))
-  }
-
-  deleteCard = id => {
-    localStorage.removeItem(id)
-    this.setState(pState => ({
-      todoCards: pState.todoCards.filter(card => card.id !== id)
-    }))
-  }
-
   componentDidMount() {
     if (localStorage.getItem('todo-cards') !== null) {
       this.setState(JSON.parse(localStorage.getItem('todo-cards')))
     } else {
-      const id = uuid()
-      const defaultState = { todoCards: [{ id }] }
-      localStorage.setItem('todo-cards', JSON.stringify(defaultState))
-      this.setState(defaultState)
+      this.setState(newCard())
     }
   }
 
   render() {
-    const { state: {todoCards}, addCard, deleteCard } = this // prettier-ignore
+    const { state: {todoCards}, addCard, deleteCard, updateCardTitle } = this // prettier-ignore
     return (
       <div className="App container">
         <div className="columns is-multiline">
-          {todoCards.map(card => (
-            <ToDoCard id={card.id} key={card.id} deleteCard={deleteCard} />
+          {todoCards.map(({ id, title }) => (
+            <ToDoCard
+              id={id}
+              title={title}
+              key={id}
+              deleteCard={deleteCard}
+              updateTitle={updateCardTitle}
+            />
           ))}
         </div>
         <AddCardButton addCard={addCard} />

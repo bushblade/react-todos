@@ -8,7 +8,7 @@ import {
   deleteTodo,
   updateWithEdit,
   defaultTodoList
-} from './ToDosStateActions'
+} from './stateActions/ToDosActions'
 
 export default class ToDos extends Component {
   state = {
