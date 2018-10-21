@@ -21,15 +21,8 @@ class ToDo extends Component {
     return (
       <div className="columns is-mobile is-gapless todo">
         <div className="column is-1">
-          <span
-            className="icon"
-            onClick={() => check(id)}
-            style={{ cursor: 'pointer' }}>
-            {checked ? (
-              <i className="far fa-check-square" />
-            ) : (
-              <i className="far fa-square" />
-            )}
+          <span className="icon" onClick={() => check(id)} style={{ cursor: 'pointer' }}>
+            {checked ? <i className="far fa-check-square" /> : <i className="far fa-square" />}
           </span>
         </div>
         <div className="column is-10">
@@ -38,7 +31,7 @@ class ToDo extends Component {
             suppressContentEditableWarning
             className={checked ? 'checked' : ''}
             ref={`todo${id}`}
-            onClick={e => {
+            onFocus={e => {
               this.refs[`todo${id}`].classList.add('selected-todo')
             }}
             onKeyDown={e => this.blurOut(e, `todo${id}`)}
@@ -50,10 +43,7 @@ class ToDo extends Component {
           </div>
         </div>
         <div className="column is-1">
-          <span
-            className="icon"
-            onClick={() => del(id)}
-            style={{ cursor: 'pointer' }}>
+          <span className="icon" onClick={() => del(id)} style={{ cursor: 'pointer' }}>
             <i className="fas fa-times has-text-danger" />
           </span>
         </div>
