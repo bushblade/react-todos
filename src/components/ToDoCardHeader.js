@@ -3,17 +3,19 @@ import PropTypes from 'prop-types'
 
 const ToDoCardHeader = ({ id, deleteCard }) => {
   return (
-    <header className="card-header" onClick={() => deleteCard(id)}>
+    <header className="card-header">
       <p className="card-header-title">To do's are saved in local storage</p>
-      <a className="card-header-icon">
+      <span className="card-header-icon" onClick={() => deleteCard(id)}>
         <span className="icon has-text-dark">
           <i className="fas fa-trash" />
         </span>
-      </a>
+      </span>
     </header>
   )
 }
 
-ToDoCardHeader.propTypes = {}
+ToDoCardHeader.propTypes = {
+  deleteCard: PropTypes.func.isRequired
+}
 
 export default ToDoCardHeader
