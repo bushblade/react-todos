@@ -41,3 +41,7 @@ body {
 .column {
   margin: 0;
 }
+
+.selected-header {
+  font-style: italic;
+}
