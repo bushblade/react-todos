@@ -11,12 +11,8 @@ class ToDo extends Component {
     }
   }
 
-  blurOut = (e, ref) => {
-    if (e.keyCode === 13) this.refs[ref].blur()
-  }
-
   render() {
-    const { todo: { text, id, checked }, check, del, edit } = this.props // prettier-ignore
+    const { todo: { text, id, checked }, check, del, edit, addTodo } = this.props // prettier-ignore
 
     return (
       <div className="columns is-mobile is-gapless todo">
@@ -32,10 +28,16 @@ class ToDo extends Component {
             suppressContentEditableWarning
             className={checked ? 'checked' : ''}
             ref={`todo${id}`}
-            onFocus={e => {
+            onFocus={() => {
               this.refs[`todo${id}`].classList.add('selected-todo')
             }}
-            onKeyDown={e => this.blurOut(e, `todo${id}`)}
+            onKeyDown={e => {
+              if (e.keyCode === 13) {
+                this.refs[`todo${id}`].blur()
+                addTodo()
+                e.preventDefault()
+              }
+            }}
             onBlur={({ target: { textContent } }) => {
               this.refs[`todo${id}`].classList.remove('selected-todo')
               textContent.length === 0 ? del(id) : edit(id, textContent)

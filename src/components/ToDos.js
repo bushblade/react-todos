@@ -54,7 +54,14 @@ export default class ToDos extends Component {
           transitionLeaveTimeout={200}>
           {todos.length > 0 ? (
             todos.map(todo => (
-              <ToDo todo={todo} check={checkToggle} del={deleteIt} edit={edit} key={todo.id} />
+              <ToDo
+                todo={todo}
+                check={checkToggle}
+                del={deleteIt}
+                edit={edit}
+                key={todo.id}
+                addTodo={addTodo}
+              />
             ))
           ) : (
             <p>This to do list is empty...</p>
