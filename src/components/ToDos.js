@@ -50,8 +50,8 @@ export default class ToDos extends Component {
       <>
         <CSSTransitionGroup
           transitionName="todos"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={200}>
+          transitionEnterTimeout={200}
+          transitionLeaveTimeout={100}>
           {todos.length > 0 ? (
             todos.map(todo => (
               <ToDo
@@ -64,7 +64,7 @@ export default class ToDos extends Component {
               />
             ))
           ) : (
-            <p>This to do list is empty...</p>
+            <p onClick={() => addTodo()}>This to do list is empty...</p>
           )}
         </CSSTransitionGroup>
         <br />

@@ -41,8 +41,8 @@ export default class App extends Component {
           component="div"
           className="columns is-multiline"
           transitionName="todos"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={200}>
+          transitionEnterTimeout={200}
+          transitionLeaveTimeout={100}>
           {todoCards.map(({ id, title }) => (
             <ToDoCard
               id={id}

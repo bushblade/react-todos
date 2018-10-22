@@ -17,7 +17,7 @@ body {
 
 .todos-enter.todos-enter-active {
   opacity: 1;
-  transition: all 300ms ease-in;
+  transition: all 200ms ease-in;
 }
 
 .todos-leave {
@@ -26,7 +26,7 @@ body {
 
 .todos-leave.todos-leave-active {
   opacity: 0.01;
-  transition: all 200ms ease-in;
+  transition: all 100ms ease-in;
 }
 
 :focus {
