@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ToDoCard from './components/ToDoCard'
 import AddCardButton from './components/AddCardButton'
-import uuid from 'uuid'
 import 'bulma/css/bulma.css'
 import 'bulma-extensions/bulma-tooltip/dist/css/bulma-tooltip.min.css'
 import 'animate.css/animate.css'
@@ -34,7 +33,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { state: {todoCards}, addCard, deleteCard, updateCardTitle } = this // prettier-ignore
+    const { state: { todoCards }, addCard, deleteCard, updateCardTitle } = this // prettier-ignore
     return (
       <div className="App container">
         <div className="columns is-multiline">
