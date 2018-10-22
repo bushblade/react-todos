@@ -12,11 +12,21 @@ body {
 }
 
 .todos-enter {
-  animation: 0.3s fadeIn ease;
+  opacity: 0.01;
+}
+
+.todos-enter.todos-enter-active {
+  opacity: 1;
+  transition: all 300ms ease-in;
 }
 
 .todos-leave {
-  animation: 0.2s fadeOut ease;
+  opacity: 1;
+}
+
+.todos-leave.todos-leave-active {
+  opacity: 0.01;
+  transition: all 200ms ease-in;
 }
 
 :focus {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CSSTransitionGroup } from 'react-transition-group'
 import ToDoCard from './components/ToDoCard'
 import AddCardButton from './components/AddCardButton'
 import 'bulma/css/bulma.css'
@@ -36,7 +37,12 @@ export default class App extends Component {
     const { state: { todoCards }, addCard, deleteCard, updateCardTitle } = this // prettier-ignore
     return (
       <div className="App container">
-        <div className="columns is-multiline">
+        <CSSTransitionGroup
+          component="div"
+          className="columns is-multiline"
+          transitionName="todos"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={200}>
           {todoCards.map(({ id, title }) => (
             <ToDoCard
               id={id}
@@ -46,7 +52,7 @@ export default class App extends Component {
               updateTitle={updateCardTitle}
             />
           ))}
-        </div>
+        </CSSTransitionGroup>
         <AddCardButton addCard={addCard} />
       </div>
     )

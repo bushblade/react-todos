@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CSSTransitionGroup } from 'react-transition-group'
 import ToDo from './ToDo'
 import AddNewTodo from './AddNewTodo'
 import {
@@ -47,20 +48,25 @@ export default class ToDos extends Component {
     const { state: { todos }, checkToggle, addTodo, deleteIt, edit } = this // prettier-ignore
     return (
       <>
-        {todos.length > 0 ? (
-          todos.map(todo => (
-            <ToDo
-              todo={todo}
-              check={checkToggle}
-              del={deleteIt}
-              edit={edit}
-              key={todo.id}
-              addTodo={addTodo}
-            />
-          ))
-        ) : (
-          <p>This to do list is empty...</p>
-        )}
+        <CSSTransitionGroup
+          transitionName="todos"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={200}>
+          {todos.length > 0 ? (
+            todos.map(todo => (
+              <ToDo
+                todo={todo}
+                check={checkToggle}
+                del={deleteIt}
+                edit={edit}
+                key={todo.id}
+                addTodo={addTodo}
+              />
+            ))
+          ) : (
+            <p>This to do list is empty...</p>
+          )}
+        </CSSTransitionGroup>
         <br />
         <AddNewTodo add={addTodo} />
       </>
