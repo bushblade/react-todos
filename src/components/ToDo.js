@@ -16,7 +16,7 @@ class ToDo extends Component {
   }
 
   render() {
-    const { todo: { text, id, checked }, check, del, edit} = this.props // prettier-ignore
+    const { todo: { text, id, checked }, check, del, edit } = this.props // prettier-ignore
 
     return (
       <div className="columns is-mobile is-gapless todo">
@@ -27,6 +27,7 @@ class ToDo extends Component {
         </div>
         <div className="column is-10">
           <div
+            style={{ width: '100%' }}
             contentEditable
             suppressContentEditableWarning
             className={checked ? 'checked' : ''}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import ToDoCard from './components/ToDoCard'
 import AddCardButton from './components/AddCardButton'
 import 'bulma/css/bulma.css'
@@ -16,7 +17,10 @@ export default class App extends Component {
 
   updateCardTitle = (id, title) => this.setState(updateTitle(id, title))
 
-  deleteCard = id => this.setState(delCard(id))
+  deleteCard = id => {
+    this.setState(delCard(id))
+    localStorage.removeItem(id)
+  }
 
   componentDidUpdate() {
     if (localStorage.getItem('todo-cards') !== undefined) {
@@ -36,7 +40,12 @@ export default class App extends Component {
     const { state: { todoCards }, addCard, deleteCard, updateCardTitle } = this // prettier-ignore
     return (
       <div className="App container">
-        <div className="columns is-multiline">
+        <ReactCSSTransitionGroup
+          component='div'
+          className="columns is-multiline"
+          transitionName="todos"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={199}>
           {todoCards.map(({ id, title }) => (
             <ToDoCard
               id={id}
@@ -46,7 +55,7 @@ export default class App extends Component {
               updateTitle={updateCardTitle}
             />
           ))}
-        </div>
+        </ReactCSSTransitionGroup>
         <AddCardButton addCard={addCard} />
       </div>
     )

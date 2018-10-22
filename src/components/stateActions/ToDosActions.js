@@ -33,13 +33,8 @@ const updateWithEdit = (id, val) => prevState => ({
 
 const defaultTodoList = id => ({
   id,
-  todos: [
-    {
-      text: ' ',
-      id: uuid(),
-      checked: false
-    }
-  ]
+  title: '',
+  todos: []
 })
 
 export { toggleCheck, newTodo, deleteTodo, updateWithEdit, defaultTodoList }

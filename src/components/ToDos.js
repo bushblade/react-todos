@@ -53,10 +53,8 @@ export default class ToDos extends Component {
               <ToDo todo={todo} check={checkToggle} del={deleteIt} edit={edit} key={todo.id} />
             ))
           ) : (
-            <article className="message">
-              <div className="message-body">You have no to do's</div>
-            </article>
-          )}
+              <p>This to do list is empty...</p>
+            )}
         </ReactCSSTransitionGroup>
         <br />
         <AddNewTodo add={addTodo} />

@@ -9,7 +9,6 @@ const updateTitle = (id, title) => ({ todoCards }) => {
 }
 
 const delCard = id => ({ todoCards }) => {
-  localStorage.removeItem(id)
   return { todoCards: todoCards.filter(card => card.id !== id) }
 }
 
