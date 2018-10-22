@@ -17,10 +17,7 @@ export default class App extends Component {
 
   updateCardTitle = (id, title) => this.setState(updateTitle(id, title))
 
-  deleteCard = id => {
-    this.setState(delCard(id))
-    localStorage.removeItem(id)
-  }
+  deleteCard = id => this.setState(delCard(id))
 
   componentDidUpdate() {
     if (localStorage.getItem('todo-cards') !== undefined) {
@@ -41,7 +38,7 @@ export default class App extends Component {
     return (
       <div className="App container">
         <ReactCSSTransitionGroup
-          component='div'
+          component="div"
           className="columns is-multiline"
           transitionName="todos"
           transitionEnterTimeout={300}

@@ -17,6 +17,10 @@ export default class ToDos extends Component {
     todos: []
   }
 
+  componentWillUnmount() {
+    localStorage.removeItem(this.state.id)
+  }
+
   componentDidUpdate() {
     const { id } = this.props
     if (localStorage.getItem(id) !== undefined) {
@@ -53,8 +57,8 @@ export default class ToDos extends Component {
               <ToDo todo={todo} check={checkToggle} del={deleteIt} edit={edit} key={todo.id} />
             ))
           ) : (
-              <p>This to do list is empty...</p>
-            )}
+            <p>This to do list is empty...</p>
+          )}
         </ReactCSSTransitionGroup>
         <br />
         <AddNewTodo add={addTodo} />
