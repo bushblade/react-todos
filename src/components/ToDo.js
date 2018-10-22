@@ -47,7 +47,7 @@ class ToDo extends Component {
         </div>
         <div className="column is-1">
           <span className="icon" onClick={() => del(id)} style={{ cursor: 'pointer' }}>
-            <i className="fas fa-times has-text-danger" />
+            <i className="fas fa-times" />
           </span>
         </div>
       </div>

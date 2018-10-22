@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import CardDropdown from './CardDropdown'
 
 class ToDoCardHeader extends Component {
   componentDidMount() {
@@ -8,7 +9,7 @@ class ToDoCardHeader extends Component {
   }
 
   render() {
-    const { id, deleteCard, updateTitle, title } = this.props
+    const { id, deleteCard, updateTitle, title, updateColor, color } = this.props
     return (
       <header className="card-header">
         <p
@@ -30,6 +31,7 @@ class ToDoCardHeader extends Component {
           }}>
           {title}
         </p>
+        <CardDropdown id={id} updateColor={updateColor} color={color} />
         <span
           className="card-header-icon tooltip"
           onClick={() => deleteCard(id)}
@@ -47,7 +49,9 @@ ToDoCardHeader.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   deleteCard: PropTypes.func.isRequired,
-  updateTitle: PropTypes.func.isRequired
+  updateTitle: PropTypes.func.isRequired,
+  updateColor: PropTypes.func.isRequired,
+  color: PropTypes.string.isRequired
 }
 
 export default ToDoCardHeader

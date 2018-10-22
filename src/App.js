@@ -6,7 +6,7 @@ import 'bulma/css/bulma.css'
 import 'bulma-extensions/bulma-tooltip/dist/css/bulma-tooltip.min.css'
 import 'animate.css/animate.css'
 import './styles.css'
-import { updateTitle, delCard, newCard } from './components/stateActions/AppActions'
+import { updateTitle, delCard, newCard, switchColor } from './components/stateActions/AppActions'
 
 export default class App extends Component {
   state = {
@@ -18,6 +18,8 @@ export default class App extends Component {
   updateCardTitle = (id, title) => this.setState(updateTitle(id, title))
 
   deleteCard = id => this.setState(delCard(id))
+
+  updateColor = (id, color) => this.setState(switchColor(id, color))
 
   componentDidUpdate() {
     if (localStorage.getItem('todo-cards') !== undefined) {
@@ -34,7 +36,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { state: { todoCards }, addCard, deleteCard, updateCardTitle } = this // prettier-ignore
+    const { state: { todoCards }, addCard, deleteCard, updateCardTitle, updateColor } = this // prettier-ignore
     return (
       <div className="App container">
         <CSSTransitionGroup
@@ -43,13 +45,15 @@ export default class App extends Component {
           transitionName="todos"
           transitionEnterTimeout={200}
           transitionLeaveTimeout={100}>
-          {todoCards.map(({ id, title }) => (
+          {todoCards.map(({ id, title, color }) => (
             <ToDoCard
               id={id}
               title={title}
+              color={color}
               key={id}
               deleteCard={deleteCard}
               updateTitle={updateCardTitle}
+              updateColor={updateColor}
             />
           ))}
         </CSSTransitionGroup>
