@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class CardDropdown extends Component {
   state = {
     showDropdown: false,
-    colors: ['Thistle', 'PaleTurquoise', 'PapayaWhip', 'LightSalmon']
+    colors: ['Thistle', 'PaleTurquoise', 'PapayaWhip', 'LightSalmon', 'GhostWhite']
   }
 
   toggleDropdown = () => {
@@ -23,7 +24,7 @@ class CardDropdown extends Component {
       toggleDropdown,
       closeDropdown
     } = this
-    const { id, updateColor } = this.props
+    const { id, updateColor, color } = this.props
 
     return (
       <div className={showDropdown ? 'dropdown is-right is-active' : 'dropdown is-right'}>
@@ -37,15 +38,15 @@ class CardDropdown extends Component {
             <i className="fas fa-angle-down" aria-hidden="true" />
           </span>
         </div>
-        <div className="dropdown-menu" style={{ minWidth: '8rem' }}>
-          <div className="dropdown-content">
+        <div className="dropdown-menu" style={{ minWidth: '9.6rem' }}>
+          <div className="dropdown-content" style={{ backgroundColor: color }}>
             <div className="dropdown-item color-pick">
               <p>
                 {colors.map(color => (
                   <span className="icon color-pick" key={color}>
-                    <i
-                      className="fas fa-circle color-pick"
-                      style={{ color: color }}
+                    <span
+                      className="color-pick-icon color-pick"
+                      style={{ backgroundColor: color }}
                       onClick={() => {
                         updateColor(id, color)
                       }}
@@ -59,6 +60,12 @@ class CardDropdown extends Component {
       </div>
     )
   }
+}
+
+CardDropdown.propTypes = {
+  id: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  updateColor: PropTypes.func.isRequired
 }
 
 export default CardDropdown

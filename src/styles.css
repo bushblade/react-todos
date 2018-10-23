@@ -55,3 +55,11 @@ body {
 .selected-header {
   font-style: italic;
 }
+
+.color-pick-icon {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}

@@ -4,7 +4,6 @@ import ToDoCardHeader from './ToDoCardHeader'
 import PropTypes from 'prop-types'
 
 const ToDoCard = ({ id, deleteCard, updateTitle, title, color, updateColor }) => {
-  console.log(color)
   return (
     <div className="column is-one-third-desktop is-half-tablet">
       <div className="card todo-card" style={{ backgroundColor: color }}>
