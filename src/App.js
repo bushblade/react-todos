@@ -7,6 +7,7 @@ import 'bulma-extensions/bulma-tooltip/dist/css/bulma-tooltip.min.css'
 import 'animate.css/animate.css'
 import './styles.css'
 import { updateTitle, delCard, newCard, switchColor } from './components/stateActions/AppActions'
+import defaultCards from './components/stateActions/defaultCards'
 
 export default class App extends Component {
   state = {
@@ -28,13 +29,11 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem('todo-cards') !== null) {
-      this.setState(JSON.parse(localStorage.getItem('todo-cards')))
-    } else {
-      this.setState(newCard())
+    if (localStorage.getItem('todo-cards') === null) {
+      defaultCards()
     }
+    this.setState(JSON.parse(localStorage.getItem('todo-cards')))
   }
-
   render() {
     const { state: { todoCards }, addCard, deleteCard, updateCardTitle, updateColor } = this // prettier-ignore
     return (
